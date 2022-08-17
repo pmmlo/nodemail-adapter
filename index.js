@@ -108,8 +108,8 @@ module.exports = function (options) {
                 to: mail.to, // Comma separated list or an array of recipients email addresses that will appear on the To: field
                 subject: mail.subject, // Subject line
                 text: mail.text, //, // plaintext body
-                html: mail.html,
-                attachments: mail.attachments
+                // html: mail.html,
+                // attachments: mail.attachments
             }
 
             transporter.sendMail(mailOptions, function (error, info) {

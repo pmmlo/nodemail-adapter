@@ -113,6 +113,9 @@ module.exports = function (options) {
             }
 
             transporter.sendMail(mailOptions, function (error, info) {
+                console.log(mailOptions);
+                console.log(error);
+                console.log(info);
                 if (error) {
                     reject(error)
                     return
@@ -122,43 +125,7 @@ module.exports = function (options) {
         });
     };
 
-    /**
-   * @function sendPasswordResetEmail
-   * @description Sends a password reset email.
-   * @param {String} link The password reset link.
-   * @param {String} appName The app name.
-   * @param {String} user The Parse User.
-   * @returns {Promise<Any>} The mail provider API response.
-   */
-    var sendPasswordResetEmail = function ({ link, appName, user }) {
-        return this.sendMail({
-            templateName: 'passwordResetEmail',
-            link,
-            appName,
-            user
-        });
-    };
-
-    /**
-     * @function sendVerificationEmail
-     * @description Sends a verification email.
-     * @param {String} link The email verification link.
-     * @param {String} appName The app name.
-     * @param {String} user The Parse User.
-     * @returns {Promise<Any>} The mail provider API response.
-     */
-    var sendVerificationEmail = function ({ link, appName, user }) {
-        return this.sendMail({
-            templateName: 'verificationEmail',
-            link,
-            appName,
-            user
-        });
-    };
-
     return {
-        sendMail: sendMail,
-        sendPasswordResetEmail: sendPasswordResetEmail,
-        sendVerificationEmail: sendVerificationEmail
+        sendMail: sendMail
     }
 };

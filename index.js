@@ -22,15 +22,7 @@ module.exports = function (options) {
         if (port == 587 || port == 465) return true
         return false
     }
-    var transporter = nodemailer.createTransport({
-        host: options.host || hostFromEmail(options.email),
-        port: options.port || 25,
-        secure: options.secure || securityStatusFromPort(options.port || 25),
-        auth: {
-            user: options.email, // Your email id
-            pass: options.password // Your password }
-        }
-    });
+    var transporter;
 
     if (options.type == "OAuth2") {
         if (options.accessToken) {
@@ -52,7 +44,7 @@ module.exports = function (options) {
                 port: options.port || 465,
                 secure: true,
                 auth: {
-                    type: options.type,
+                    type: options.type, // OAuth2
                     user: options.email, // Your email id
                     clientId: options.clientId, // xlskjdf.apps.googleusercontent.com
                     clientSecret: options.clientSecret,
@@ -90,13 +82,22 @@ module.exports = function (options) {
                 }
             });
         }
-
+    } else {
+        if (options.password) {
+            transporter = nodemailer.createTransport({
+                host: options.host || hostFromEmail(options.email),
+                port: options.port || 25,
+                secure: options.secure || securityStatusFromPort(options.port || 25),
+                auth: {
+                    user: options.email, // Your email id
+                    pass: options.password // Your password }
+                }
+            });
+        }
     }
 
     var sendMail = function (mail) {
-
         return new Promise(function (resolve, reject) {
-
             var mailOptions = {
                 ...mail,
                 from: mail.from || options.from || options.email, // sender address
@@ -114,8 +115,6 @@ module.exports = function (options) {
                 }
                 resolve(info)
             });
-
-
         });
     };
 

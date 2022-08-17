@@ -23,7 +23,6 @@ module.exports = function (options) {
         return false
     }
     var transporter;
-    console.log("Moo");
     if (options.type == "OAuth2") {
         if (options.accessToken) {
             /// Token-Based Authentication
@@ -70,7 +69,6 @@ module.exports = function (options) {
             });
         } else if (options.serviceClient && options.privateKey) {
             /// 2-Legged OAuth2
-            console.log('2-legged');
             transporter = nodemailer.createTransport({
                 host: options.host || smtpHostFromEmail(options.email),
                 port: options.port || 465,
@@ -102,7 +100,7 @@ module.exports = function (options) {
             var mailOptions = {
                 ...mail,
                 from: mail.from || options.from || options.email, // sender address
-                to: [mail.to], // Comma separated list or an array of recipients email addresses that will appear on the To: field
+                to: mail.to, // Comma separated list or an array of recipients email addresses that will appear on the To: field
                 subject: mail.subject, // Subject line
                 text: mail.text, //, // plaintext body
                 html: mail.html,

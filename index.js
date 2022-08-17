@@ -23,7 +23,7 @@ module.exports = function (options) {
         return false
     }
     var transporter;
-
+    console.log("Moo");
     if (options.type == "OAuth2") {
         if (options.accessToken) {
             /// Token-Based Authentication
@@ -70,6 +70,7 @@ module.exports = function (options) {
             });
         } else if (options.serviceClient && options.privateKey) {
             /// 2-Legged OAuth2
+            console.log('2-legged');
             transporter = nodemailer.createTransport({
                 host: options.host || smtpHostFromEmail(options.email),
                 port: options.port || 465,

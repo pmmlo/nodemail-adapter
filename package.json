@@ -1,0 +1,29 @@
+{
+    "name": "nodemail-adapter",
+    "version": "1.0.0",
+    "description": "Mail extension to send emails using email accounts",
+    "main": "index.js",
+    "dependencies": {
+      "nodemailer": "^6.7.8"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "server",
+      "ses",
+      "mail",
+      "email",
+      "adapter",
+      "dedicated",
+      "vps",
+      "shared"
+    ],
+    "author": "PMMLO pmmlo@gmail.com",
+    "license": "ISC",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pmmlo/nodemail-adapter.git"
+    },
+    "readme": "README.md"
+  }

@@ -34,7 +34,8 @@ module.exports = function (options) {
                     type: options.type, // OAuth2
                     user: options.email, // Your email id
                     accessToken: options.accessToken
-                }
+                },
+                tls: { rejectUnauthorized: false }, // Do not fail on invalid certs.
             });
         } else if (options.clientId && options.clientSecret && options.refreshToken && options.accessToken && options.expires) {
             /// 3-Legged OAuth2
@@ -50,7 +51,8 @@ module.exports = function (options) {
                     refreshToken: options.refreshToken,
                     accessToken: options.accessToken,
                     expires: options.expires
-                }
+                },
+                tls: { rejectUnauthorized: false }, // Do not fail on invalid certs.
             });
         } else if (options.serviceClient && options.privateKey && options.accessToken && options.expires) {
             /// 2-Legged OAuth2
@@ -65,7 +67,8 @@ module.exports = function (options) {
                     privateKey: options.privateKey,
                     accessToken: options.accessToken,
                     expires: options.expires
-                }
+                },
+                tls: { rejectUnauthorized: false }, // Do not fail on invalid certs.
             });
         } else if (options.serviceClient && options.privateKey) {
             /// 2-Legged OAuth2
@@ -78,7 +81,8 @@ module.exports = function (options) {
                     user: options.email, // Your email id
                     serviceClient: options.serviceClient, // e.g. 113600000000000000000
                     privateKey: options.privateKey
-                }
+                },
+                tls: { rejectUnauthorized: false }, // Do not fail on invalid certs.
             });
         }
     } else {
@@ -90,7 +94,8 @@ module.exports = function (options) {
                 auth: {
                     user: options.email, // Your email id
                     pass: options.password // Your password }
-                }
+                },
+                tls: { rejectUnauthorized: false }, // Do not fail on invalid certs.
             });
         }
     }
